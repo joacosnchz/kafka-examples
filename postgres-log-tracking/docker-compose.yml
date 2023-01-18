@@ -22,6 +22,24 @@ services:
     volumes:
       - pgadmin-data:/var/lib/pgadmin
 
+  debezium:
+    image: debezium/connect
+    ports:
+      - "8083:8083"
+    links:
+      - zookeeper
+      - kafka
+      - postgres
+    depends_on:
+      - kafka
+      - postgres
+    environment:
+      GROUP_ID: 1
+      CONFIG_STORAGE_TOPIC: my-connect-configs
+      OFFSET_STORAGE_TOPIC: my-connect-offsets
+      BOOTSTRAP_SERVERS: "kafka:9092"
+      ADVERTISED_HOST_NAME: $$(echo $DOCKER_HOST | cut -f3  -d'/' | cut -f1 -d':')
+
   zookeeper:
     image: 'bitnami/zookeeper:latest'
     container_name: zookeeper
