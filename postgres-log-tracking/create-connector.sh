@@ -2,7 +2,7 @@ curl -X POST -H "Accept:application/json" -H "Content-Type:application/json" loc
 {
 "name": "postgres-connector",
 "config": {
-"topic.prefix": "pre.",
+"topic.prefix": "postgres",
 "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
 "tasks.max": "1",
 "database.hostname": "postgres",
@@ -11,7 +11,7 @@ curl -X POST -H "Accept:application/json" -H "Content-Type:application/json" loc
 "database.user": "admin",
 "database.password": "admin",
 "database.dbname" : "admin",
-"database.server.name": "consumer",
+"database.server.name": "producer",
 "database.whitelist": "postgres",
 "database.history.kafka.bootstrap.servers": "kafka:9092",
 "database.history.kafka.topic": "changes.inventory"
