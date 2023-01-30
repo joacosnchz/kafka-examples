@@ -1,0 +1,39 @@
+version: "3.7"
+services:
+  webserver1:
+    build: webserver1
+    environment:
+      - SERVICE_NAME=webserver1
+      - PORT=8888
+    ports:
+      - 8888:8888
+    depends_on:
+      - kafka
+  webserver2:
+    build: webserver2
+    environment:
+      - SERVICE_NAME=webserver2
+      - PORT=8889
+    ports:
+      - 8889:8889
+    depends_on:
+      - kafka
+
+  zookeeper:
+    image: 'bitnami/zookeeper:latest'
+    ports:
+      - '2181:2181'
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+  kafka:
+    image: 'bitnami/kafka:latest'
+    ports:
+      - "9092:9092"
+    environment:
+      - KAFKA_BROKER_ID=1
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://:9092
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+      - ALLOW_PLAINTEXT_LISTENER=yes
+    depends_on:
+      - zookeeper
