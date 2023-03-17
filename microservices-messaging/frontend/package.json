@@ -1,0 +1,15 @@
+{
+    "name": "microservices-frontend",
+    "version": "1.0.0",
+    "description": "Frontend service",
+    "main": "http-server",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "start": "http-server /public"
+    },
+    "dependencies": {
+        "http-server": "^14.1.1"
+    },
+    "author": "Joaquin Sanchez",
+    "license": "ISC"
+}

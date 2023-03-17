@@ -6,6 +6,6 @@ COPY package.json /app
 
 RUN npm install
 
-COPY server.js /app
+COPY broker.js /app
 
 ENTRYPOINT ["npm", "start"]

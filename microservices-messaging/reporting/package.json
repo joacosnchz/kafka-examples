@@ -2,9 +2,10 @@
     "name": "microservices-messaging",
     "version": "1.0.0",
     "description": "Messaging demo between two microservices",
-    "main": "server.js",
+    "main": "broker.js",
     "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1"
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "start": "node broker.js"
     },
     "dependencies": {
         "kafkajs": "^2.2.3"
