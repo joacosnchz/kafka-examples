@@ -3,7 +3,7 @@
         <title>Frontend</title>
     </head>
     <body>
-        <div>
+        <div id="report-section">
             <button id="generate-report">Generate report</button>
         </div>
 
@@ -15,7 +15,7 @@
                         type: 'GET',
                         url: 'http://localhost:8080/generate-report',
                         success: function() {
-                            console.log('request received')
+                            $('#report-section').html('<p>Report request received by the backend</p>')
                         }
                     });
                 });

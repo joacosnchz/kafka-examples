@@ -9,16 +9,17 @@ const consumer = kafka.consumer({ groupId: 'reporting-service' });
 
 const run = async () => {
     await consumer.connect();
-    await consumer.subscribe({ topic: 'reporting', fromBeginning: true });
+    await consumer.subscribe({ topic: 'reporting' });
 
     await consumer.run({
         eachMessage: async ({ topic, partition, message }) => {
-            console.log({
-                topic,
-                partition,
-                offset: message.offset,
-                value: message.value.toString(),
-            })
+            if(topic == 'reporting') {
+                console.log('Generating report');
+
+                setTimeout(() => {
+                    console.log('Report generated sucessfully')
+                }, message.value.toString());
+            }
         },
     });
 }

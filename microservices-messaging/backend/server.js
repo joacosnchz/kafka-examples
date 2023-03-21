@@ -10,12 +10,12 @@ const producer = kafka.producer();
 
 http.createServer(async (request, response) => {
     if (request.url == '/generate-report') {
-        console.log('Generate report request received')
+        console.log('Request received')
         await producer.connect();
         await producer.send({
             topic: 'reporting',
             messages: [
-                { value: `Hello` }
+                { value: '15000' }
             ]
         });
         await producer.disconnect();
@@ -29,6 +29,8 @@ http.createServer(async (request, response) => {
     response.writeHead(200, headers);
     response.write('OK');
     response.end();
+
+    console.log('Response to frontend sent')
 }).listen(process.env.PORT);
 
 console.log(`Webserver listening on port: ${process.env.PORT}`);
